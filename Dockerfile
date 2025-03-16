@@ -2,6 +2,8 @@ FROM httpd:2.4
 
 WORKDIR /root/workspace
 
+
+
 RUN apt-get update && apt-get install -y \
     apache2 \
     apache2-utils \
