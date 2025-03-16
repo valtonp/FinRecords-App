@@ -1,0 +1,11 @@
+services:
+  apache:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: web-server
+    ports:
+      - "3000:3000" # back
+      - "5000:5000" # front
+    volumes:
+      - ./:/root/workspace
