@@ -11,12 +11,41 @@ datasource db {
 }
 
 model User {
-  id    Int    @id @default(autoincrement())
-  name  String
-  email String @unique
+  id           Int           @id @default(autoincrement())
+  name         String
+  email        String        @unique
+  wallets      Wallet[]
+  transactions Transaction[]
 }
 
 model Wallet {
-  id   Int    @id @default(autoincrement())
-  name String @unique
+  id           Int           @id @default(autoincrement())
+  name         String
+  balance      Float
+  userId       Int
+  user         User          @relation(fields: [userId], references: [id])
+  assets       Asset[]
+  transactions Transaction[]
+}
+
+model Transaction {
+  id       Int      @id @default(autoincrement())
+  type     String
+  amount   Float
+  priceAt  Float
+  date     DateTime
+  walletId Int
+  wallet   Wallet   @relation(fields: [walletId], references: [id])
+  userId   Int
+  user     User     @relation(fields: [userId], references: [id])
+}
+
+model Asset {
+  id                 Int    @id @default(autoincrement())
+  name               String
+  quantity           Float
+  purchasePriceUnity Float
+  currentPriceUnity  Float
+  walletId           Int
+  wallet             Wallet @relation(fields: [walletId], references: [id])
 }
