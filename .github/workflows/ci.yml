@@ -26,8 +26,8 @@ jobs:
       - name: Run ESLint
         run: npm run lint
 
-#      - name: Run backend tests
-#        run: npm run test:e2e
+      - name: Run backend tests
+        run: npm run test:e2e
 
   frontend-test:
     runs-on: ubuntu-latest
